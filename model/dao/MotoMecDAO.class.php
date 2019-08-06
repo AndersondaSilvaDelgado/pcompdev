@@ -5,7 +5,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-require_once 'Conn.class.php';
+require_once ('./dbutil/Conn.class.php');
 /**
  * Description of MotoMecDAO
  *
@@ -43,6 +43,21 @@ class MotoMecDAO extends Conn {
         $result = $this->Read->fetchAll();
 
         return $result;
+    }
+    
+    public function salvarDados($mm) {
+
+        $sql = " INSERT INTO APONTA_MOTOMEC "
+                . " VALUES (" . $mm->veic . " "
+                . " , " . $mm->motorista . " "
+                . " , " . $mm->opcor . " "
+                . " , TO_DATE('" . $mm->dihi . "','DD/MM/YYYY HH24:MI') "
+                . " , " . $mm->caux . ", 1, 1, 0, 0, 0)";
+
+        $this->Conn = parent::getConn();
+        $this->Create = $this->Conn->prepare($sql);
+        $this->Create->execute();
+            
     }
     
 }

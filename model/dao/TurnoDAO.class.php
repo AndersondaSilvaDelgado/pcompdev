@@ -5,14 +5,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-require_once 'Conn.class.php';
-
+require_once ('./dbutil/Conn.class.php');
 /**
- * Description of ProdutoDAO
+ * Description of TurnoDAO
  *
  * @author anderson
  */
-class ProdutoDAO extends Conn {
+class TurnoDAO extends Conn {
     //put your code here
 
     /** @var PDOStatement */
@@ -24,13 +23,13 @@ class ProdutoDAO extends Conn {
     public function dados() {
 
         $select = " SELECT "
-                . " PROD_ID AS \"idProduto\" "
-                . " , CD AS \"codProduto\" "
-                . " , DESCR AS \"descProduto\" "
+                    . " CODIGO AS \"idTurno\" "
+                    . " , DESCRICAO AS \"descTurno\" "
                 . " FROM "
-                . " PROD "
-                . " WHERE "
-                . " CD LIKE 'A500207' OR CD LIKE 'A500055' ";
+                    . " PCOMP_TURNO "
+                . " ORDER BY "
+                    . " CODIGO "
+                . " ASC";
 
         $this->Conn = parent::getConn();
         $this->Read = $this->Conn->prepare($select);

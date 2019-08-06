@@ -1,17 +1,12 @@
 <?php
 
-require('./dao/PesqBalancaProdDAO.class.php');
+require('./control/LeiraCTR.class.php');
 
-$pesqBalancaProdDAO = new PesqBalancaProdDAO();
+$leiraCTR = new LeiraCTR();
 $info = filter_input_array(INPUT_POST, FILTER_DEFAULT);
-
 
 if (isset($info)):
 
-    //faz o parsing da string, criando o array "empregados"
-    $dados = array("dados" => $pesqBalancaProdDAO->pesqInfo($info['dado']));
-    $pesqBalancaProdDAO->altInfo($info['dado']);
-    $json_str = json_encode($dados);
-    echo $json_str;
-    
+    echo $retorno = $leiraCTR->pesqLeiraProd($info);
+
 endif;

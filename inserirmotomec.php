@@ -1,20 +1,12 @@
 <?php
 
-require('./dao/InserirMotoMecDAO.class.php');
+require('./control/MotoMecCTR.class.php');
 
-$inserirMotoMecDAO = new InserirMotoMecDAO();
+$motoMecCTR = new MotoMecCTR();
 $info = filter_input_array(INPUT_POST, FILTER_DEFAULT);
 
 if (isset($info)):
 
-    //$dados = '{"dados":[{"caux":0,"dihi":"31/01/2017 15:20","id":1,"motorista":1,"opcor":443,"veic":2223}]}';
-
-    //faz o parsing da string, criando o array "empregados"
-    $jsonObj = json_decode($info['dado']);
-    //$jsonObj = json_decode($dados);
-    $dados = $jsonObj->dados;
-    $inserirMotoMecDAO->salvarDados($dados);
-
+    echo $motoMecCTR->salvarDados($info, 'inserirmotomec');
+    
 endif;
-
-echo 'GRAVOU-MOTOMEC';
